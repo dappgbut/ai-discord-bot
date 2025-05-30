@@ -1,0 +1,24 @@
+{
+  "name": "ai-discord-bot",
+  "version": "1.0.0",
+  "description": "A discord bot equipped with AI that makes user able to talk with them like a person",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dappgbut/ai-discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dappgbut/ai-discord-bot/issues"
+  },
+  "homepage": "https://github.com/dappgbut/ai-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0"
+  }
+}
