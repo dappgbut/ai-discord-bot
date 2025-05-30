@@ -50,22 +50,7 @@ for (const file of eventFiles) {
 client.on('messageCreate', async message => {
     if (message.author.bot || !message.content.startsWith(prefix)) return;
 	const args = message.content.slice(prefix.length).trimStart();
-    const commandName = args; // Get the first element (command) and remove it from args, also lowercasing it
-    // --- COMMAND HANDLING ---
-
-    // Example: Ping command
-    //if (commandName === 'ping') {
-    //    const timeTaken = Date.now() - message.createdTimestamp;
-    //    message.reply(`Pong! Latency is ${timeTaken}ms. API Latency is ${Math.round(client.ws.ping)}ms.`);
-    //}
-    //// Example: Echo command
-    //else if (commandName === 'echo') {
-    //    if (!args.length) {
-    //        return message.reply('You need to provide some text to echo!');
-    //    }
-    //    const textToEcho = args.join(' ');
-    //    message.channel.send(textToEcho);
-    //}
+    const commandName = args;
 
 	if (commandName) {
 		async function aicommandsend() {
