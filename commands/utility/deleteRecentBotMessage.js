@@ -13,7 +13,7 @@ module.exports = {
         }
 
         try {
-            // Fetch the last 50 messages in the channel. You might need to adjust the limit. [1, 18]
+            // Fetch the last 50 messages in the channel. You might need to adjust the limit.
             const messages = await channel.messages.fetch({ limit: 50 });
 
             // Filter messages to find the target message
@@ -54,7 +54,7 @@ module.exports = {
 
         } catch (error) {
             console.error('Error deleting bot message:', error);
-            // It's good practice to defer the reply if the operation might take time. [5, 6]
+            // It's good practice to defer the reply if the operation might take time.
             if (interaction.deferred || interaction.replied) {
                 await interaction.editReply({ content: 'An error occurred while trying to delete the message.', ephemeral: true });
             } else {

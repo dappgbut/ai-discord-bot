@@ -24,13 +24,13 @@ module.exports = {
         count = Math.min(count, 5); // Ensure it doesn't exceed your defined safe maximum
 
         try {
-            // Defer the reply as deleting multiple messages might take a bit longer. [5, 6]
+            // Defer the reply as deleting multiple messages might take a bit longer.
             await interaction.deferReply({ ephemeral: true });
 
             // Fetch more messages if we intend to delete more.
             // Consider the 'count' when deciding the limit. Add some buffer.
             const fetchLimit = Math.max(50, count * 10); // Fetch at least 50, or more if count is high
-            const messages = await channel.messages.fetch({ limit: fetchLimit }); // [1, 18]
+            const messages = await channel.messages.fetch({ limit: fetchLimit });
 
             const userBotInteractions = messages.filter(msg => {
                 if (msg.author.id !== interaction.client.user.id) {
