@@ -1,10 +1,9 @@
 require('dotenv').config();
-const { chatWithLLM } = require('./utils/aillm');
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const token = process.env.BOTTOKEN;
-const prefix = process.env.PREFIX;
+
 
 // Create a new client instance
 const client = new Client({ intents: [
@@ -45,22 +44,5 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-
-// Chat by mentioning the bot
-client.on('messageCreate', async message => {
-    if (message.author.bot || !message.content.startsWith(prefix)) return;
-	const args = message.content.slice(prefix.length).trimStart();
-    const commandName = args;
-
-	if (commandName) {
-		async function aicommandsend() {
-			const response = await chatWithLLM(commandName)
-			message.reply(response)
-		}
-		console.log(commandName);
-		aicommandsend();
-	}
-
-});
 
 client.login(token);
