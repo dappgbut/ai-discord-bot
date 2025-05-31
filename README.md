@@ -16,7 +16,7 @@ Install all the dependencies
   npm install
 ```
 
-Edit the .env file, and put everything needed
+Add a .env file inside the folder, and put everything needed
 
 ```env
   BOTTOKEN=YOUR_BOT_TOKEN_HERE
