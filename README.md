@@ -1,2 +1,34 @@
 # ai-discord-bot
-A discord bot equipped with AI that makes user able to talk with them like a person
+A discord bot equipped with AI with that makes user able to talk with them like a person. The bot equipped with a *maid persona* that acts like a literal *maid* in your discord server (～￣▽￣)～
+
+## ✔ Installation (Windows Only)
+
+Clone the repository using git
+
+```bash
+  git clone https://github.com/dappgbut/ai-discord-bot.git
+  cd ai-discord-bot
+```
+
+Install all the dependencies
+
+```bash
+  npm install
+```
+
+Edit the .env file, and put everything needed
+
+```env
+  BOTTOKEN=YOUR_BOT_TOKEN_HERE
+  AIAPIKEY=CHUTES_AI_API_KEY
+  CLIENTID=BOT_CLIENT_ID
+  TGUILDID=YOUR_TEST_GUILD_ID
+  PREFIX=<@YOUR_BOT_ID>
+```
+
+Run the discord bot
+
+```bash
+  node .
+```
+    
