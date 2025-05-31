@@ -1,6 +1,10 @@
 # ai-discord-bot
 A discord bot equipped with AI with that makes user able to talk with them like a person. The bot equipped with a *maid persona* that acts like a literal *maid* in your discord server (～￣▽￣)～
 
+## Requirements
+
+- [Node.js](https://nodejs.org/en) 22.12.0 or newer is required
+- [Chutes](https://chutes.ai/) api key to run their llm services
 ## ✔ Installation (Windows Only)
 
 Clone the repository using git
@@ -16,7 +20,7 @@ Install all the dependencies
   npm install
 ```
 
-Add a .env file inside the folder, and put everything needed
+Edit the .env file, and put everything needed
 
 ```env
   BOTTOKEN=YOUR_BOT_TOKEN_HERE
