@@ -6,6 +6,7 @@ let chatHistory = [
   }
 ];
 
+//Chat with the llm function
 async function chatWithLLM(promptText) {
   const apiKey = process.env.AIAPIKEY;
   const apiUrl = 'https://llm.chutes.ai/v1/chat/completions'; 
@@ -47,6 +48,7 @@ async function chatWithLLM(promptText) {
   }
 }
 
+// Clear chat memory function
 function clearChatMemory() {
   if (chatHistory.length === 0) {
     console.log("Chat history is already empty.");
