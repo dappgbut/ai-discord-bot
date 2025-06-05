@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
-const keep_alive = require('./keep-alive')
+// const keep_alive = require('./keep-alive')
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const token = process.env.BOTTOKEN;
 
