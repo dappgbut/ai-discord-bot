@@ -28,6 +28,8 @@ Add a .env file in the folder, and put everything needed
   CLIENTID=BOT_CLIENT_ID
   TGUILDID=YOUR_TEST_GUILD_ID
   PREFIX=<@YOUR_BOT_ID>
+  ADMINPREFIX=ADMIN_PREFIX_HERE
+  ADMINUSERID=YOUR/OWNER_USER_ID_HERE
 ```
 
 Run the discord bot
