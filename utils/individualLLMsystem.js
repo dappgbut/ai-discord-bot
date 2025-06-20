@@ -82,4 +82,9 @@ function clearUserChatMemory(userId, systemPrompt = DEFAULT_SYSTEM_PROMPT) {
     }
 }
 
-module.exports = { chatWithLLMForUser, clearUserChatMemory };
+function clearAllUserMemories() {
+    userChatHistories = {};
+    console.log("All user chat memories have been cleared.");
+}
+
+module.exports = { chatWithLLMForUser, clearUserChatMemory, clearAllUserMemories };

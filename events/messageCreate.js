@@ -1,5 +1,5 @@
 const { Events } = require('discord.js');
-const { chatWithLLMForUser, clearUserChatMemory } = require('../utils/individualLLMsystem');
+const { chatWithLLMForUser, clearUserChatMemory, clearAllUserMemories } = require('../utils/individualLLMsystem');
 const prefix = process.env.PREFIX; // AI chat prefix
 const adminprefix = process.env.ADMINPREFIX; // Admin prefix
 const adminuser = process.env.ADMINUSERID;
@@ -214,6 +214,16 @@ module.exports = {
 			// if (message.deletable) {
 			// 	message.delete().catch(console.error);
 			// }
+		} else if (commandName === 'resetallusermemory') {
+
+			if (!message.author.id == adminuser) {
+				message.reply({ content: 'You are not allowed to use this command!', flags: MessageFlags.Ephemeral });
+			}
+
+			clearAllUserMemories();
+			const replyMsg = await message.channel.send(`All user chat memories have been reseted`);
+			// Optionally, delete this confirmation message after a few seconds
+			setTimeout(() => replyMsg.delete().catch(console.error), 5000);
 		}
     },
     
