@@ -1,5 +1,6 @@
 const { Events } = require('discord.js');
 const { chatWithLLMForUser, clearUserChatMemory, clearAllUserMemories } = require('../utils/individualLLMsystem');
+const { getConsoleOutput } = require('../utils/get-console');
 const prefix = process.env.PREFIX; // AI chat prefix
 const adminprefix = process.env.ADMINPREFIX; // Admin prefix
 const adminuser = process.env.ADMINUSERID;
@@ -12,6 +13,7 @@ module.exports = {
 
 		let arg;
 		let commandName2;
+
 		if (message.content.startsWith(prefix)) {
 			arg = message.content.slice(prefix.length).trimStart(); // AI
 			commandName2 = arg;
@@ -28,11 +30,18 @@ module.exports = {
 				const userid = message.author.id;
 				const model = 'deepseek-ai/DeepSeek-V3-0324';
 				const response = await chatWithLLMForUser(userid, commandName2, model);
-				message.reply(response)
+
+				if (response.length <= 1950) {
+					message.reply(response)
+				} else {
+					message.reply("AI Response is too long (T-T)")
+				}
 		    }
 		    console.log(commandName2);
-		    aicommandsend();
-	    } 
+			aicommandsend();
+	    }
+
+		// ADMIN COMMANDS
 		if (commandName === 'echo') {
         	if (!args.length) {
             	return message.reply('You need to provide some text to echo!');
@@ -224,6 +233,23 @@ module.exports = {
 			const replyMsg = await message.channel.send(`All user chat memories have been reseted`);
 			// Optionally, delete this confirmation message after a few seconds
 			setTimeout(() => replyMsg.delete().catch(console.error), 5000);
+		} else if (commandName === 'console') {
+			const output = getConsoleOutput();
+
+			if (output.length > 1900) {
+            	await interaction.reply({
+            	    content: 'The console output is too long. Here it is as a file:',
+            	    files: [{
+            	        attachment: Buffer.from(output, 'utf-8'),
+            	        name: 'console-log.txt'
+            	    }]
+            	});
+        	} else if (output.length === 0) {
+        	    await message.reply('The console is currently empty.');
+        	} else {
+        	    // Otherwise, send it in a code block
+        	    await message.reply(`\`\`\`\n${output}\n\`\`\``);
+        	}
 		}
     },
     
