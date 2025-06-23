@@ -1,10 +1,26 @@
 const { Events } = require('discord.js');
 const { chatWithLLMForUser, clearUserChatMemory, clearAllUserMemories } = require('../utils/individualLLMsystem');
 const { getConsoleOutput } = require('../utils/get-console');
+
+const fs = require('fs'); 
+const path = require('path');
+
 const prefix = process.env.PREFIX; // AI chat prefix
 const adminprefix = process.env.ADMINPREFIX; // Admin prefix
 const adminuser = process.env.ADMINUSERID;
 const botid = process.env.CLIENTID;
+
+//SETUP AI MODEL
+const settingsPath = path.join(__dirname, '..', 'userSettings.json');
+
+// Function to read user settings
+const readSettings = () => {
+    if (!fs.existsSync(settingsPath)) {
+        return {};
+    }
+    const data = fs.readFileSync(settingsPath, 'utf8');
+    return JSON.parse(data);
+};
 
 module.exports = {
     name: Events.MessageCreate,
@@ -23,12 +39,15 @@ module.exports = {
 		console.log(args);
 		const commandName = args.shift().toLowerCase(); // Admin
         
+		// AI CHAT
 	    if (commandName2) {
 		    async function aicommandsend() {
 		    	// const response = await chatWithLLM(commandName)
 		    	// message.reply(response)
 				const userid = message.author.id;
-				const model = 'deepseek-ai/DeepSeek-V3-0324';
+				// const model = 'deepseek-ai/DeepSeek-V3-0324';
+				const settings = readSettings();
+				const model = settings[userid]?.aiModel || 'deepseek-ai/DeepSeek-V3-0324';
 				const response = await chatWithLLMForUser(userid, commandName2, model);
 
 				if (response.length <= 1950) {
@@ -237,7 +256,7 @@ module.exports = {
 			const output = getConsoleOutput();
 
 			if (output.length > 1900) {
-            	await interaction.reply({
+            	await message.reply({
             	    content: 'The console output is too long. Here it is as a file:',
             	    files: [{
             	        attachment: Buffer.from(output, 'utf-8'),
